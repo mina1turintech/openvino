@@ -1,0 +1,41 @@
+======================================================================
+oneDNN Verbose Trace Output
+======================================================================
+Timestamp: 2025-01-10T14:30:22.123456
+Model: ./extracted_block/transformer_block.xml
+Device: CPU
+Tag: baseline
+Batch size: 1
+Sequence length: 16
+Iterations: 10
+Random seed: 42
+DNNL_VERBOSE level: 1
+======================================================================
+
+STDOUT:
+----------------------------------------------------------------------
+Inference completed successfully
+----------------------------------------------------------------------
+
+STDERR (oneDNN verbose output):
+----------------------------------------------------------------------
+dnnl_verbose,info,oneDNN v3.4.0 (commit N/A)
+dnnl_verbose,info,cpu,runtime:OpenMP
+dnnl_verbose,info,cpu,isa:Intel AVX2
+dnnl_verbose,info,cpu,engine,0,backend:OpenMP,name:Intel Core Processor (Skylake, IBRS),count:1
+dnnl_verbose,info,graph,backend,0,name:dnnl_backend,version:1.0
+dnnl_verbose,exec,cpu,reorder,jit:uni,undef,src_f32::blocked:ab:f0 dst_f32::blocked:ba:f0,,,1536x8960,0.123047
+dnnl_verbose,exec,cpu,reorder,jit:uni,undef,src_f32::blocked:ab:f0 dst_f32::blocked:ba:f0,,,8960x1536,0.134567
+dnnl_verbose,exec,cpu,inner_product,gemm:jit,forward_inference,src_f32::blocked:ab:f0 wei_f32::blocked:ba:f0 dst_f32::blocked:ab:f0,,,mb1ic1536oc8960,0.456123
+dnnl_verbose,exec,cpu,reorder,jit:uni,undef,src_f32::blocked:ab:f0 dst_f32::blocked:ba:f0,,,1536x8960,0.119876
+dnnl_verbose,exec,cpu,reorder,jit_direct_copy:uni,undef,src_f32::blocked:ab:f0 dst_f32::blocked:ab:f0,,,1536x1536,0.087654
+dnnl_verbose,exec,cpu,inner_product,gemm:jit,forward_inference,src_f32::blocked:ab:f0 wei_f32::blocked:ba:f0 dst_f32::blocked:ab:f0,,,mb1ic1536oc1536,0.345678
+dnnl_verbose,exec,cpu,reorder,jit:uni,undef,src_f32::blocked:abc:f0 dst_f32::blocked:acb:f0,,,1x16x1536,0.045678
+dnnl_verbose,exec,cpu,reorder,simple:any,undef,src_f32::blocked:a:f0 dst_f32::blocked:a:f0,,,1536,0.012345
+dnnl_verbose,exec,cpu,matmul,brgemm:avx2,undef,src_f32::blocked:abc:f0 wei_f32::blocked:abc:f0 dst_f32::blocked:abc:f0,,,1x16x1536:1x1536x64:1x16x64,0.234567
+dnnl_verbose,exec,cpu,reorder,jit:uni,undef,src_f32::blocked:ab:f0 dst_f32::blocked:ba:f0,,,8960x1536,0.128901
+dnnl_verbose,exec,cpu,reorder,jit_direct_copy:uni,undef,src_f32::blocked:ab:f0 dst_f32::blocked:ab:f0,,,16x1536,0.034567
+dnnl_verbose,exec,cpu,inner_product,gemm:jit,forward_inference,src_f32::blocked:ab:f0 wei_f32::blocked:ba:f0 dst_f32::blocked:ab:f0,,,mb1ic1536oc8960,0.467890
+dnnl_verbose,exec,cpu,reorder,jit:uni,undef,src_f32::blocked:ab:f0 dst_f32::blocked:ba:f0,,,1536x8960,0.121234
+dnnl_verbose,exec,cpu,reorder,jit:uni,undef,src_f32::blocked:ab:f0 dst_f32::blocked:ba:f0,,,1536x8960,0.118765
+----------------------------------------------------------------------

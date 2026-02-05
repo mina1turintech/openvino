@@ -1,0 +1,99 @@
+{
+  "timestamp": "2025-01-10T14:30:22.123456",
+  "metrics": {
+    "total": {
+      "count": 45,
+      "time_ms": 5.234567
+    },
+    "by_implementation": {
+      "jit:uni": {
+        "count": 32,
+        "time_ms": 3.456789
+      },
+      "jit_direct_copy:uni": {
+        "count": 8,
+        "time_ms": 1.234567
+      },
+      "simple:any": {
+        "count": 5,
+        "time_ms": 0.543211
+      }
+    },
+    "by_dimension": {
+      "1536x8960": {
+        "count": 12,
+        "time_ms": 1.876543
+      },
+      "8960x1536": {
+        "count": 12,
+        "time_ms": 1.765432
+      },
+      "1536x1536": {
+        "count": 8,
+        "time_ms": 0.987654
+      },
+      "1x16x1536": {
+        "count": 6,
+        "time_ms": 0.345678
+      },
+      "16x1536": {
+        "count": 4,
+        "time_ms": 0.234567
+      },
+      "1536x256": {
+        "count": 3,
+        "time_ms": 0.024693
+      }
+    },
+    "by_dimension_value": {
+      "1536": {
+        "count": 45,
+        "time_ms": 5.234567
+      },
+      "8960": {
+        "count": 24,
+        "time_ms": 3.641975
+      },
+      "16": {
+        "count": 10,
+        "time_ms": 0.580245
+      },
+      "256": {
+        "count": 3,
+        "time_ms": 0.024693
+      },
+      "1": {
+        "count": 6,
+        "time_ms": 0.345678
+      }
+    },
+    "by_layout_transformation": {
+      "ab -> ba": {
+        "count": 24,
+        "time_ms": 3.641975
+      },
+      "abc -> acb": {
+        "count": 8,
+        "time_ms": 0.987654
+      },
+      "abcd -> acdb": {
+        "count": 6,
+        "time_ms": 0.345678
+      },
+      "ab -> ab": {
+        "count": 5,
+        "time_ms": 0.234567
+      },
+      "a -> a": {
+        "count": 2,
+        "time_ms": 0.024693
+      }
+    }
+  },
+  "parser_summary": {
+    "trace_file": "./traces/onednn_trace_baseline_20250110_143022.txt",
+    "total_lines": 1247,
+    "reorder_operations": 45,
+    "parse_errors": 0
+  }
+}

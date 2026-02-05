@@ -410,6 +410,8 @@ void Graph::Activate() {
 void Graph::Configure([[maybe_unused]] bool optimize) {
     OPENVINO_ASSERT(status == Status::NotReady, "Invalid graph status");
 
+    ov::intel_cpu::GraphOptimizer::InitInstrumentation();
+
     SortTopologically();
     InitNodes();
 
@@ -439,6 +441,8 @@ void Graph::Configure([[maybe_unused]] bool optimize) {
     ResolveComplexInplaceConflicts();
 
     SortTopologically();
+
+    ov::intel_cpu::GraphOptimizer::FinalizeInstrumentation();
 
     status = Status::Initialized;
 }
@@ -499,6 +503,50 @@ void Graph::InitDescriptors() {
 #endif
     }
 
+    // Bidirectional layout propagation: Backward pass
+    // Traverse graph in reverse topological order to collect layout preferences from consumer nodes
+    OV_ITT_SCOPE_NEXT(FIRST_INFERENCE, taskChain, "PropagateLayoutPreferencesBackward");
+    DEBUG_LOG("Starting backward layout propagation pass");
+    for (auto it = graphNodes.rbegin(); it != graphNodes.rend(); ++it) {
+        auto& node = *it;
+        DEBUG_LOG("Backward pass for node: ", node->getName());
+        
+        // For each input port of this node, determine preferred layout from its supported descriptors
+        // and propagate to parent nodes' output ports
+        const auto& supportedDescs = node->getSupportedPrimitiveDescriptors();
+        if (supportedDescs.empty()) {
+            continue;
+        }
+        
+        // Use the first supported descriptor as the preference hint
+        // In the future, this could be more sophisticated (e.g., choose most common layout)
+        const auto& preferredDesc = supportedDescs[0];
+        const auto& inConfs = preferredDesc.getConfig().inConfs;
+        
+        // Propagate input layout preferences to parent nodes
+        for (size_t inPort = 0; inPort < inConfs.size() && inPort < node->getParentEdges().size(); ++inPort) {
+            auto parentEdge = node->getParentEdgeAt(inPort);
+            if (!parentEdge) {
+                continue;
+            }
+            
+            auto parentNode = parentEdge->getParent();
+            int parentOutPort = parentEdge->getInputNum();
+            
+            if (parentOutPort >= 0) {
+                auto preferredLayout = inConfs[inPort].getMemDesc();
+                if (preferredLayout) {
+                    DEBUG_LOG("  Propagating preferred layout from node ", 
+                              node->getName(), " input[", inPort, "] to parent ", 
+                              parentNode->getName(), " output[", parentOutPort, "]");
+                    parentNode->setPreferredOutputLayout(parentOutPort, preferredLayout);
+                }
+            }
+        }
+    }
+
+    // Bidirectional layout propagation: Forward pass (with backward knowledge)
+    // This is the existing forward pass, now enhanced with backward propagation information
     for (auto& node : graphNodes) {
         OV_ITT_SCOPE_NEXT(FIRST_INFERENCE, taskChain, node->profiling.selectOptimalPrimitiveDescriptor);
         DEBUG_LOG("Select optimal primitive descriptors for node: ", node->getName());

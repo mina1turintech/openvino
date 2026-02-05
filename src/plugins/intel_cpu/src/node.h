@@ -638,6 +638,56 @@ public:
 
     bool canBePerformedAsScaleShift(const Node* parentNode = nullptr) const;
 
+    /**
+     * @brief Bidirectional layout propagation: Get preferred input layout for a specific port
+     * @param port Input port index
+     * @return Preferred memory descriptor, or nullptr if no preference
+     */
+    MemoryDescPtr getPreferredInputLayout(size_t port) const {
+        if (port < preferredInputLayouts.size()) {
+            return preferredInputLayouts[port];
+        }
+        return nullptr;
+    }
+
+    /**
+     * @brief Bidirectional layout propagation: Get preferred output layout for a specific port
+     * @param port Output port index
+     * @return Preferred memory descriptor, or nullptr if no preference
+     */
+    MemoryDescPtr getPreferredOutputLayout(size_t port) const {
+        if (port < preferredOutputLayouts.size()) {
+            return preferredOutputLayouts[port];
+        }
+        return nullptr;
+    }
+
+    /**
+     * @brief Bidirectional layout propagation: Set preferred output layout for a specific port
+     * Called during backward pass when child nodes communicate their preferences
+     * @param port Output port index
+     * @param layout Preferred memory descriptor
+     */
+    void setPreferredOutputLayout(size_t port, const MemoryDescPtr& layout) {
+        if (preferredOutputLayouts.size() <= port) {
+            preferredOutputLayouts.resize(port + 1);
+        }
+        preferredOutputLayouts[port] = layout;
+    }
+
+    /**
+     * @brief Bidirectional layout propagation: Set preferred input layout for a specific port
+     * Called during backward pass when propagating preferences from outputs to inputs
+     * @param port Input port index
+     * @param layout Preferred memory descriptor
+     */
+    void setPreferredInputLayout(size_t port, const MemoryDescPtr& layout) {
+        if (preferredInputLayouts.size() <= port) {
+            preferredInputLayouts.resize(port + 1);
+        }
+        preferredInputLayouts[port] = layout;
+    }
+
     bool isDynamicNode() const {
         return isDynamic;
     }
@@ -745,6 +795,12 @@ protected:
     std::unordered_map<int, dnnl::memory> primArgs;
     std::unordered_map<int, MemoryPtr> postOpsArgs;
     std::vector<dnnl::primitive_desc> descs;
+
+    // Bidirectional layout propagation: store preferred layouts from backward pass
+    // Each entry represents the preferred memory descriptor for that port
+    // Empty entries (nullptr) indicate no preference from consumers
+    std::vector<MemoryDescPtr> preferredInputLayouts;   // Preferred layouts for input ports (from parent nodes)
+    std::vector<MemoryDescPtr> preferredOutputLayouts;  // Preferred layouts for output ports (from child nodes)
 
     const GraphContext::CPtr context;
 

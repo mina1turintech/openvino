@@ -1,0 +1,477 @@
+{
+  "timestamp": "2025-01-10T15:45:33.789012",
+  "metrics": {
+    "total": {
+      "count": 45,
+      "time_ms": 5.234567
+    },
+    "by_implementation": {
+      "jit:uni": {
+        "count": 32,
+        "time_ms": 3.456789
+      },
+      "jit_direct_copy:uni": {
+        "count": 8,
+        "time_ms": 1.234567
+      },
+      "simple:any": {
+        "count": 5,
+        "time_ms": 0.543211
+      }
+    },
+    "by_dimension": {
+      "1536x8960": {
+        "count": 12,
+        "time_ms": 1.876543
+      },
+      "8960x1536": {
+        "count": 12,
+        "time_ms": 1.765432
+      },
+      "1536x1536": {
+        "count": 8,
+        "time_ms": 0.987654
+      },
+      "1x16x1536": {
+        "count": 6,
+        "time_ms": 0.345678
+      },
+      "16x1536": {
+        "count": 4,
+        "time_ms": 0.234567
+      },
+      "1536x256": {
+        "count": 3,
+        "time_ms": 0.024693
+      }
+    },
+    "by_dimension_value": {
+      "1536": {
+        "count": 45,
+        "time_ms": 5.234567
+      },
+      "8960": {
+        "count": 24,
+        "time_ms": 3.641975
+      },
+      "16": {
+        "count": 10,
+        "time_ms": 0.580245
+      },
+      "256": {
+        "count": 3,
+        "time_ms": 0.024693
+      },
+      "1": {
+        "count": 6,
+        "time_ms": 0.345678
+      }
+    },
+    "by_layout_transformation": {
+      "ab -> ba": {
+        "count": 24,
+        "time_ms": 3.641975
+      },
+      "abc -> acb": {
+        "count": 8,
+        "time_ms": 0.987654
+      },
+      "abcd -> acdb": {
+        "count": 6,
+        "time_ms": 0.345678
+      },
+      "ab -> ab": {
+        "count": 5,
+        "time_ms": 0.234567
+      },
+      "a -> a": {
+        "count": 2,
+        "time_ms": 0.024693
+      }
+    }
+  },
+  "comparison": {
+    "total": {
+      "baseline": {
+        "count": 45,
+        "time_ms": 5.234567
+      },
+      "optimized": {
+        "count": 28,
+        "time_ms": 3.156789
+      },
+      "delta": {
+        "count": -17,
+        "time_ms": -2.077778
+      },
+      "percent_change": {
+        "count": -37.78,
+        "time_ms": -39.70
+      }
+    },
+    "by_implementation": {
+      "jit:uni": {
+        "baseline": {
+          "count": 32,
+          "time_ms": 3.456789
+        },
+        "optimized": {
+          "count": 20,
+          "time_ms": 2.123456
+        },
+        "delta": {
+          "count": -12,
+          "time_ms": -1.333333
+        },
+        "percent_change": {
+          "count": -37.50,
+          "time_ms": -38.57
+        }
+      },
+      "jit_direct_copy:uni": {
+        "baseline": {
+          "count": 8,
+          "time_ms": 1.234567
+        },
+        "optimized": {
+          "count": 5,
+          "time_ms": 0.765432
+        },
+        "delta": {
+          "count": -3,
+          "time_ms": -0.469135
+        },
+        "percent_change": {
+          "count": -37.50,
+          "time_ms": -38.00
+        }
+      },
+      "simple:any": {
+        "baseline": {
+          "count": 5,
+          "time_ms": 0.543211
+        },
+        "optimized": {
+          "count": 3,
+          "time_ms": 0.267901
+        },
+        "delta": {
+          "count": -2,
+          "time_ms": -0.275310
+        },
+        "percent_change": {
+          "count": -40.00,
+          "time_ms": -50.68
+        }
+      }
+    },
+    "by_dimension": {
+      "1536x8960": {
+        "baseline": {
+          "count": 12,
+          "time_ms": 1.876543
+        },
+        "optimized": {
+          "count": 6,
+          "time_ms": 0.876543
+        },
+        "delta": {
+          "count": -6,
+          "time_ms": -1.000000
+        },
+        "percent_change": {
+          "count": -50.00,
+          "time_ms": -53.28
+        }
+      },
+      "8960x1536": {
+        "baseline": {
+          "count": 12,
+          "time_ms": 1.765432
+        },
+        "optimized": {
+          "count": 6,
+          "time_ms": 0.865432
+        },
+        "delta": {
+          "count": -6,
+          "time_ms": -0.900000
+        },
+        "percent_change": {
+          "count": -50.00,
+          "time_ms": -50.97
+        }
+      },
+      "1536x1536": {
+        "baseline": {
+          "count": 8,
+          "time_ms": 0.987654
+        },
+        "optimized": {
+          "count": 5,
+          "time_ms": 0.567654
+        },
+        "delta": {
+          "count": -3,
+          "time_ms": -0.420000
+        },
+        "percent_change": {
+          "count": -37.50,
+          "time_ms": -42.52
+        }
+      },
+      "1x16x1536": {
+        "baseline": {
+          "count": 6,
+          "time_ms": 0.345678
+        },
+        "optimized": {
+          "count": 5,
+          "time_ms": 0.312345
+        },
+        "delta": {
+          "count": -1,
+          "time_ms": -0.033333
+        },
+        "percent_change": {
+          "count": -16.67,
+          "time_ms": -9.64
+        }
+      },
+      "16x1536": {
+        "baseline": {
+          "count": 4,
+          "time_ms": 0.234567
+        },
+        "optimized": {
+          "count": 4,
+          "time_ms": 0.234567
+        },
+        "delta": {
+          "count": 0,
+          "time_ms": 0.000000
+        },
+        "percent_change": {
+          "count": 0.00,
+          "time_ms": 0.00
+        }
+      },
+      "1536x256": {
+        "baseline": {
+          "count": 3,
+          "time_ms": 0.024693
+        },
+        "optimized": {
+          "count": 2,
+          "time_ms": 0.017890
+        },
+        "delta": {
+          "count": -1,
+          "time_ms": -0.006803
+        },
+        "percent_change": {
+          "count": -33.33,
+          "time_ms": -27.55
+        }
+      }
+    },
+    "by_dimension_value": {
+      "1536": {
+        "baseline": {
+          "count": 45,
+          "time_ms": 5.234567
+        },
+        "optimized": {
+          "count": 28,
+          "time_ms": 3.156789
+        },
+        "delta": {
+          "count": -17,
+          "time_ms": -2.077778
+        },
+        "percent_change": {
+          "count": -37.78,
+          "time_ms": -39.70
+        }
+      },
+      "8960": {
+        "baseline": {
+          "count": 24,
+          "time_ms": 3.641975
+        },
+        "optimized": {
+          "count": 12,
+          "time_ms": 1.741975
+        },
+        "delta": {
+          "count": -12,
+          "time_ms": -1.900000
+        },
+        "percent_change": {
+          "count": -50.00,
+          "time_ms": -52.17
+        }
+      },
+      "16": {
+        "baseline": {
+          "count": 10,
+          "time_ms": 0.580245
+        },
+        "optimized": {
+          "count": 9,
+          "time_ms": 0.546912
+        },
+        "delta": {
+          "count": -1,
+          "time_ms": -0.033333
+        },
+        "percent_change": {
+          "count": -10.00,
+          "time_ms": -5.74
+        }
+      },
+      "256": {
+        "baseline": {
+          "count": 3,
+          "time_ms": 0.024693
+        },
+        "optimized": {
+          "count": 2,
+          "time_ms": 0.017890
+        },
+        "delta": {
+          "count": -1,
+          "time_ms": -0.006803
+        },
+        "percent_change": {
+          "count": -33.33,
+          "time_ms": -27.55
+        }
+      },
+      "1": {
+        "baseline": {
+          "count": 6,
+          "time_ms": 0.345678
+        },
+        "optimized": {
+          "count": 5,
+          "time_ms": 0.312345
+        },
+        "delta": {
+          "count": -1,
+          "time_ms": -0.033333
+        },
+        "percent_change": {
+          "count": -16.67,
+          "time_ms": -9.64
+        }
+      }
+    },
+    "by_layout_transformation": {
+      "ab -> ba": {
+        "baseline": {
+          "count": 24,
+          "time_ms": 3.641975
+        },
+        "optimized": {
+          "count": 12,
+          "time_ms": 1.741975
+        },
+        "delta": {
+          "count": -12,
+          "time_ms": -1.900000
+        },
+        "percent_change": {
+          "count": -50.00,
+          "time_ms": -52.17
+        }
+      },
+      "abc -> acb": {
+        "baseline": {
+          "count": 8,
+          "time_ms": 0.987654
+        },
+        "optimized": {
+          "count": 5,
+          "time_ms": 0.567654
+        },
+        "delta": {
+          "count": -3,
+          "time_ms": -0.420000
+        },
+        "percent_change": {
+          "count": -37.50,
+          "time_ms": -42.52
+        }
+      },
+      "abcd -> acdb": {
+        "baseline": {
+          "count": 6,
+          "time_ms": 0.345678
+        },
+        "optimized": {
+          "count": 5,
+          "time_ms": 0.312345
+        },
+        "delta": {
+          "count": -1,
+          "time_ms": -0.033333
+        },
+        "percent_change": {
+          "count": -16.67,
+          "time_ms": -9.64
+        }
+      },
+      "ab -> ab": {
+        "baseline": {
+          "count": 5,
+          "time_ms": 0.234567
+        },
+        "optimized": {
+          "count": 4,
+          "time_ms": 0.234567
+        },
+        "delta": {
+          "count": -1,
+          "time_ms": 0.000000
+        },
+        "percent_change": {
+          "count": -20.00,
+          "time_ms": 0.00
+        }
+      },
+      "a -> a": {
+        "baseline": {
+          "count": 2,
+          "time_ms": 0.024693
+        },
+        "optimized": {
+          "count": 2,
+          "time_ms": 0.017890
+        },
+        "delta": {
+          "count": 0,
+          "time_ms": -0.006803
+        },
+        "percent_change": {
+          "count": 0.00,
+          "time_ms": -27.55
+        }
+      }
+    }
+  },
+  "parser_summary": {
+    "baseline": {
+      "trace_file": "./traces/onednn_trace_baseline_20250110_143022.txt",
+      "total_lines": 1247,
+      "reorder_operations": 45,
+      "parse_errors": 0
+    },
+    "optimized": {
+      "trace_file": "./traces/onednn_trace_optimized_20250110_154530.txt",
+      "total_lines": 982,
+      "reorder_operations": 28,
+      "parse_errors": 0
+    }
+  }
+}

@@ -14,6 +14,8 @@ class GraphOptimizer {
 public:
     GraphOptimizer();
 
+    static void InitInstrumentation();
+    static void FinalizeInstrumentation();
     static void ApplyCommonGraphOptimizations(Graph& graph);
     static void ApplyImplSpecificGraphOptimizations(Graph& graph);
     static void ShareReorders(Graph& graph);
@@ -53,6 +55,7 @@ private:
     static void RemoveSameConvert(Graph& graph);
     static void RemoveMemoryInputConvert(Graph& graph);
     static void RemoveConvertMemoryOutput(Graph& graph);
+    static void PropagateLayoutHints(Graph& graph);
     static void MatchSdpaKvCache(Graph& graph);
     static void DropRedundantMemoryOutput(Graph& graph);
 

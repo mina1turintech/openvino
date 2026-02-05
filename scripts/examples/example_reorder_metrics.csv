@@ -1,0 +1,34 @@
+Category,Key,Count,Time_ms,Avg_Time_ms
+
+Total,All Reorders,45,5.234567,0.116324
+
+By Implementation Type
+Implementation,Key,Count,Time_ms,Avg_Time_ms
+Implementation,jit:uni,32,3.456789,0.108024
+Implementation,jit_direct_copy:uni,8,1.234567,0.154321
+Implementation,simple:any,5,0.543211,0.108642
+
+By Dimension
+Dimension,Key,Count,Time_ms,Avg_Time_ms
+Dimension,1536x8960,12,1.876543,0.156379
+Dimension,8960x1536,12,1.765432,0.147119
+Dimension,1536x1536,8,0.987654,0.123457
+Dimension,1x16x1536,6,0.345678,0.057613
+Dimension,16x1536,4,0.234567,0.058642
+Dimension,1536x256,3,0.024693,0.008231
+
+By Dimension Value
+Dimension Value,Key,Count,Time_ms,Avg_Time_ms
+Dimension Value,1536,45,5.234567,0.116324
+Dimension Value,8960,24,3.641975,0.151749
+Dimension Value,16,10,0.580245,0.058025
+Dimension Value,256,3,0.024693,0.008231
+Dimension Value,1,6,0.345678,0.057613
+
+By Layout Transformation
+Layout,Key,Count,Time_ms,Avg_Time_ms
+Layout,ab -> ba,24,3.641975,0.151749
+Layout,abc -> acb,8,0.987654,0.123457
+Layout,abcd -> acdb,6,0.345678,0.057613
+Layout,ab -> ab,5,0.234567,0.046913
+Layout,a -> a,2,0.024693,0.012347
